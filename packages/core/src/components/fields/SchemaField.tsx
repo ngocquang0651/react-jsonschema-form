@@ -74,23 +74,7 @@ function getFieldComponent<
 
   return componentName in fields
     ? fields[componentName]
-    : () => {
-        const UnsupportedFieldTemplate = getTemplate<
-          "UnsupportedFieldTemplate",
-          T,
-          S,
-          F
-        >("UnsupportedFieldTemplate", registry, uiOptions);
-
-        return (
-          <UnsupportedFieldTemplate
-            schema={schema}
-            idSchema={idSchema}
-            reason={`Unknown field type ${schema.type}`}
-            registry={registry}
-          />
-        );
-      };
+    : fields[COMPONENT_TYPES["string"]]
 }
 
 /** The `SchemaFieldRender` component is the work-horse of react-jsonschema-form, determining what kind of real field to
